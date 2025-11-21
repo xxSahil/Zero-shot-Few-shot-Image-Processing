@@ -1,13 +1,13 @@
 """
 Contains helper functions for zero-shot and few-shot
 
-1. Load an image with OpenCV, 
-converting BGR to RGB for CLIP and Matplot, 
-converting an RGB NumPy array to PIL for CLIP
+1. Load an image with Python Image Library (PIL), then
+converting it to RGB numpy array (for Matplot) and leaving
+the PIL image (for CLIP)
 
-5. Creating a Matplot diagram for zero-shot and few-shot
+2. Creating a Matplot diagram for zero-shot and few-shot
 """
-import cv2
+
 import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
@@ -19,15 +19,9 @@ def load_img(img_path):
         - img_rgb: a Numpy RGB array
         - img_pil: a PIL image for CLIP
     """
+    img_pil = Image.open(img_path).convert("RGB")
 
-    # Load using OpenCV 
-    img_bgr = cv2.imread(img_path)
-
-    #Convert BGR to RGB for Matplot/CLIP
-    img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
-
-    # Convert RGB to PIL
-    img_pil = Image.fromarray(img_rgb)
+    img_rgb = np.array(img_pil)
 
     return img_rgb, img_pil
 
@@ -86,7 +80,6 @@ def plot_results(img_rgb, zero_prob, few_prob, classes, title, save_path):
     axes[2].set_xlim(0, 1)
     axes[2].set_title("Few-shot Probabilities")
 
-    # Add percentage labels
     for i, value in enumerate(few_vals):
         axes[2].text(
             value + 0.01,
