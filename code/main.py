@@ -34,7 +34,8 @@ def main():
     test_images = [
         "input_images/test1.jpg",
         "input_images/test2.jpg",
-        "input_images/test3.jpg"
+        "input_images/test3.jpg",
+        "input_images/test4.jpg"
     ]
 
     print("Running classification on test images...")
