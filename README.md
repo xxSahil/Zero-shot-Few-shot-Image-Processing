@@ -1,6 +1,5 @@
 # Few-Shot-Zero-Shot-Image-Classification with CLIP, PyTorch, and OpenCV
 
-- OpenCV (for image loading & preprocessing)
 - PyTorch
 - CLIP (via Hugging Face Transformers)
 - Matplotlib (for visualization)
